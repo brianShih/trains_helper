@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gps_buf" 
+        android:text="" />
+    <TextView 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/longitude_label"
+    />
+    <TextView  android:id="@+id/longitude"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/latitude_label"
+    />
+    <TextView  android:id="@+id/latitude"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/met_status_label"
+    />
+    <TextView  android:id="@+id/met_status"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/gap_label"
+    />
+    <TextView  android:id="@+id/gap_status"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/pass_station"
+    />
+    <TextView  android:id="@+id/pass_sta"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/curr_station"
+    />
+    <TextView  android:id="@+id/curr_sta"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/next_station"
+    />
+    <TextView  android:id="@+id/next_sta"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/curr_speed"
+    />
+    <TextView  android:id="@+id/curr_spd"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    <TextView  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="@string/curr_direct"
+    />
+    <TextView  android:id="@+id/curr_dir"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text=""
+    />
+    </LinearLayout>
+
+
+
+</LinearLayout>

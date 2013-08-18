@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">liferecorder</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="met_status_label">狀態：</string>
+    <string name="gap_label">距離：</string>
+    <string name="longitude_label">經度：</string>
+    <string name="latitude_label">緯度：</string>
+    <string name="curr_station">現在位置：</string>
+    <string name="next_station">下一站：</string>
+    <string name="pass_station">已過站：</string>
+    <string name="curr_speed">速度：</string>
+    <string name="curr_direct">方向:</string>
+    <!-- 
+    <string name="tai_str">到太原火車站</string>
+    <string name="ton_str">到花壇火車站</string>
+    <string name="target_str">目的地：</string>
+    <string name="start_str">開始</string>
+     -->
+</resources>
