@@ -1,76 +1,29 @@
 package com.lifes.liferecorder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.Settings;
-import android.support.v4.app.NotificationCompat;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class lifes_main extends Activity implements LocationListener {
 	static int once_init = 0;
-	static int change_count = 0;
-	private boolean getService = false;
-	AtomicBoolean isRunning=new AtomicBoolean(false);
+	private boolean getLocationService = false;
 	private TextView gps_text;
 	private LocationManager lms;
 	private String bestProvider = LocationManager.GPS_PROVIDER;
 	int next_way = 3; // 1 : north, 0 : south
-	Double last_latitude = 0.0;
-	Double last_longitude = 0.0;
 	Double target_longitude = 0.0;
 	Double target_latitude = 0.0;
-	Double next_longitude = 0.0;
-	Double next_latitude = 0.0;
-	Double last_gap = 0.0;
-	int stations_count = 8;
-	int curr_point = 0;
 	private static int train_temp_index = 0;
 	taiwan_trainstation tts = new taiwan_trainstation();
-
-	public void create_notif_option()
-	{
-	  NotificationManager notificationManager=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-	  //設定當按下這個通知之後要執行的activity
-	  Intent notifyIntent = new Intent(lifes_main.this,lifes_main.class);
-	    notifyIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
-	  PendingIntent appIntent=PendingIntent.getActivity(lifes_main.this,0,
-	    notifyIntent,0);
-	  Notification notification = new Notification();
-
-	  RemoteViews remoteView = new RemoteViews(this.getPackageName(),R.layout.notification);  
-      remoteView.setImageViewResource(R.id.image, R.drawable.ic_launcher);
-      remoteView.setTextViewText(R.id.train_info , "Current Train's locate ..");  
-      notification.contentView = remoteView; 
-	  //設定出現在狀態列的圖示
-	  //notification.icon=R.drawable.icon;
-	  notification.icon=R.drawable.ic_launcher;
-	  //顯示在狀態列的文字
-	  notification.tickerText="notification on status bar.";
-	  //會有通知預設的鈴聲、振動、light
-	  notification.defaults=Notification.DEFAULT_LIGHTS;
-	  //設定通知的標題、內容
-	  notification.setLatestEventInfo(lifes_main.this, "Current Station", "Locating...",appIntent); 
-	  //NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-	  //notification.setLatestEventInfo(lifes_main.this, "Current Station", "TEST", appIntent);
-	  //送出Notification
-	  notificationManager.notify(0,notification);
-	}
 
 	public void setPass_stations(int idx)
 	{
@@ -162,7 +115,7 @@ public class lifes_main extends Activity implements LocationListener {
 
 		LocationManager status = (LocationManager) (this.getSystemService(Context.LOCATION_SERVICE));
 		if (status.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-		  getService = true;
+		  getLocationService = true;
 		  locationServiceInitial();
 		} else {
 		  Toast.makeText(this, "", Toast.LENGTH_LONG).show();
@@ -206,38 +159,31 @@ public class lifes_main extends Activity implements LocationListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if(getService) {
+		if(getLocationService) {
 			lms.requestLocationUpdates(bestProvider, 1000, 1, this);
 		}
-
-        //isRunning.set(true);
 	}
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		//isRunning.set(true);
 	}
  
     @Override
     protected void onStop() {
       super.onStop();
-		if(getService) {
+		if(getLocationService) {
 		  lms.removeUpdates(this);
-			//create_notif_option();
         }
-		isRunning.set(false);
     }
 
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		if(getService) {
+		if(getLocationService) {
 			lms.removeUpdates(this);
         }
-		isRunning.set(false);
-		create_notif_option();
 	}
 	@Override
 	public void onLocationChanged(Location location) {	// GPS location change..

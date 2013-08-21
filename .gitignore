@@ -1,5 +1,6 @@
 .metadata/*
 liferecorder/gen/*
+liferecorder/bin/*
 .DS_Store
 liferecorder/.DS_Store
 liferecorder/liferecorder.keystore

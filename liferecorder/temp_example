@@ -1,0 +1,29 @@
+
+	public void create_notif_option()
+	{
+	  NotificationManager notificationManager=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+	  //設定當按下這個通知之後要執行的activity
+	  Intent notifyIntent = new Intent(lifes_main.this,lifes_main.class);
+	    notifyIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK);
+	  PendingIntent appIntent=PendingIntent.getActivity(lifes_main.this,0,
+	    notifyIntent,0);
+	  Notification notification = new Notification();
+
+	  RemoteViews remoteView = new RemoteViews(this.getPackageName(),R.layout.notification);  
+      remoteView.setImageViewResource(R.id.image, R.drawable.ic_launcher);
+      remoteView.setTextViewText(R.id.train_info , "Current Train's locate ..");  
+      notification.contentView = remoteView; 
+	  //設定出現在狀態列的圖示
+	  //notification.icon=R.drawable.icon;
+	  notification.icon=R.drawable.ic_launcher;
+	  //顯示在狀態列的文字
+	  notification.tickerText="notification on status bar.";
+	  //會有通知預設的鈴聲、振動、light
+	  notification.defaults=Notification.DEFAULT_LIGHTS;
+	  //設定通知的標題、內容
+	  notification.setLatestEventInfo(lifes_main.this, "Current Station", "Locating...",appIntent); 
+	  //NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	  //notification.setLatestEventInfo(lifes_main.this, "Current Station", "TEST", appIntent);
+	  //送出Notification
+	  notificationManager.notify(0,notification);
+	}

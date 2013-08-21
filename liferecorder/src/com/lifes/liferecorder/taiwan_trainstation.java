@@ -1,7 +1,6 @@
 package com.lifes.liferecorder;
 
 import android.location.Location;
-import android.widget.TextView;
 
 public class taiwan_trainstation {
 	private int train_index = 0;
