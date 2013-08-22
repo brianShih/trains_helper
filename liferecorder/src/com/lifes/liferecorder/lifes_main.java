@@ -94,9 +94,9 @@ public class lifes_main extends Activity implements LocationListener {
   		  else if (next_way == 0)
   		  {
   		    dir_txt.setText(String.valueOf("南下"));
-  		    setNext_stations(tmp_index-1);
-  		    if (tmp_index < tts.train_stations.length )
-    		  setPass_stations(tmp_index - 1);
+  		    setNext_stations(tmp_index - 1);
+  		    if (tmp_index < tts.getMAXTrainSta() )
+    		  setPass_stations(tmp_index + 1);
   		  }
     	}
     }
@@ -133,9 +133,9 @@ public class lifes_main extends Activity implements LocationListener {
 		else
 		{
 			Toast.makeText(this, "Locating.", Toast.LENGTH_LONG).show();
-			lms.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, lifes_main.this);
+			lms.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, lifes_main.this);
 			//GPS provider
-			lms.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, lifes_main.this);
+			lms.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, lifes_main.this);
 		}
     	// update gps data
     	Criteria criteria = new Criteria();    	
@@ -160,7 +160,7 @@ public class lifes_main extends Activity implements LocationListener {
 		// TODO Auto-generated method stub
 		super.onResume();
 		if(getLocationService) {
-			lms.requestLocationUpdates(bestProvider, 1000, 1, this);
+			lms.requestLocationUpdates(bestProvider, 1000, 5, this);
 		}
 	}
 	@Override

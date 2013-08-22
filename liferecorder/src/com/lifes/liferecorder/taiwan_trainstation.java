@@ -4,6 +4,7 @@ import android.location.Location;
 
 public class taiwan_trainstation {
 	private int train_index = 0;
+	private int max_station = 8;
 	Double[][] train_stations = {
 			// latitude  , longitude
 			{24.0253312, 120.5372467}, //0.花壇
@@ -16,14 +17,14 @@ public class taiwan_trainstation {
 			{24.167135,  120.700046}   //7.太原
     };
 	String[] train_name = {
-			"花壇火車站"
-			,"彰化火車站"
-			,"成功火車站"
-			,"新烏日火車站"
-			,"烏日火車站"
-			,"大慶火車站"
-			,"台中火車站"
-			,"太原火車站"
+			"花壇火車站" //0
+			,"彰化火車站" //1
+			,"成功火車站" //2
+			,"新烏日火車站" //3
+			,"烏日火車站"  //4
+			,"大慶火車站"  //5
+			,"台中火車站" //6
+			,"太原火車站" //7
 	};
 	
 
@@ -35,6 +36,11 @@ public class taiwan_trainstation {
 	public void setTrain_index(int set_index)
 	{
 	  this.train_index = set_index;
+	}
+	
+	public int getMAXTrainSta()
+	{
+	  return this.max_station;
 	}
 
 	public double getDistance(double lat1, double lon1, double lat2, double lon2) {
